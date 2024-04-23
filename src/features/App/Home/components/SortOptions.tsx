@@ -2,7 +2,7 @@ import { StyleSheet, View } from "react-native";
 
 import Button from "@/src/components/Button/Button";
 import Text from "@/src/components/Text/Text";
-import { useTheme } from "@/src/context/theme";
+import { useTheme, useThemeSettings } from "@/src/context/theme";
 import { Theme } from "@/src/theme/theme";
 import { TasksListSortOptions } from "@/src/types/Tasks.type";
 
@@ -13,7 +13,8 @@ type Props = {
 
 export default function SortOptions(props: Props) {
   const theme = useTheme();
-  const styles = sortOptionsStyles(theme);
+  const themeContext = useThemeSettings();
+  const styles = sortOptionsStyles(theme, themeContext.isDarkTheme);
 
   return (
     <View style={{ marginHorizontal: theme.spacing.m }}>
@@ -87,7 +88,7 @@ export default function SortOptions(props: Props) {
   );
 }
 
-const sortOptionsStyles = (theme: Theme) => {
+const sortOptionsStyles = (theme: Theme, isDarkTheme: boolean) => {
   const styles = StyleSheet.create({
     container: {
       flexDirection: "row",
@@ -110,7 +111,7 @@ const sortOptionsStyles = (theme: Theme) => {
       backgroundColor: theme.colors.text,
     },
     button_text_selected: {
-      color: theme.colors.black,
+      color: isDarkTheme ? theme.colors.black : theme.colors.white,
     },
   });
 
