@@ -3,4 +3,8 @@ export const queryKeys = {
     getAllTasks: "getAllTasks",
     getTaskById: "getTaskById",
   },
+  employee: {
+    getAllEmployees: "getAllEmployees",
+    getEmployeeById: "getEmployeeById",
+  },
 };
