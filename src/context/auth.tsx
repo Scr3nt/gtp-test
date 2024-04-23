@@ -20,23 +20,25 @@ function useProtectedRoute() {
       return;
     }
     const inAuthGroup = segments[0] === "(auth)";
+    const inLoadingGroup = segments.length === 0;
+
     supabase.auth
       .getSession()
       .then(({ data: { session } }) => {
-        if (session && inAuthGroup) {
-          router.replace("/");
+        if (session && (inAuthGroup || inLoadingGroup)) {
+          router.replace("/home");
         }
-        if (!session && !inAuthGroup) {
+        if (!session && (!inAuthGroup || inLoadingGroup)) {
           router.replace("/login");
         }
       })
       .catch((e) => console.error(e));
 
     supabase.auth.onAuthStateChange((_event, session) => {
-      if (session && inAuthGroup) {
-        router.replace("/");
+      if (session && (inAuthGroup || inLoadingGroup)) {
+        router.replace("/home");
       }
-      if (!session && !inAuthGroup) {
+      if (!session && (!inAuthGroup || inLoadingGroup)) {
         router.replace("/login");
       }
     });

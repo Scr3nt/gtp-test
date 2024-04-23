@@ -73,7 +73,7 @@ export default function Layout() {
       }}
     >
       <Tabs.Screen
-        name="(homepage)/index"
+        name="(homepage)/home"
         options={{
           title: "Acceuil",
 

@@ -4,7 +4,7 @@ import Page from "@/src/components/Page/Page";
 import Text from "@/src/components/Text/Text";
 import { useTheme } from "@/src/context/theme";
 
-export default function Index() {
+export default function HomePage() {
   const theme = useTheme();
   return (
     <Page>
