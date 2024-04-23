@@ -30,6 +30,9 @@ export default function HomePage() {
     <Page style={styles.container}>
       <Page isScrollView style={styles.content}>
         <StatusBar style={theme.colors.statusbar} />
+        <Text type="semi-bold" preset="title03" style={styles.title}>
+          Agenda des tâches
+        </Text>
         <View key={calendarKey}>
           <Calendar
             theme={{
@@ -79,6 +82,9 @@ const homeStyles = (theme: Theme) => {
     },
     content: {
       padding: 0,
+    },
+    title: {
+      paddingHorizontal: theme.spacing.m,
     },
     create_task: {
       backgroundColor: theme.colors.blue03,

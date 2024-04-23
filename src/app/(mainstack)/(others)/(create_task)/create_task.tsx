@@ -2,7 +2,7 @@ import { useLocalSearchParams } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
 import { StyleSheet, View } from "react-native";
-import { useMutation } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 
 import { createTask } from "@/src/api/APICreateTask";
 import Button from "@/src/components/Button/Button";
@@ -12,6 +12,7 @@ import TextInput from "@/src/components/TextInput/TextInput";
 import { useToast } from "@/src/components/Toast";
 import { useTheme } from "@/src/context/theme";
 import { useUser } from "@/src/hooks/useUser";
+import { queryKeys } from "@/src/queryKeys";
 import { formatHour } from "@/src/utils/formatHour";
 
 type CreateTaskParams = {
@@ -21,6 +22,8 @@ type CreateTaskParams = {
 export default function CreateTaskPage() {
   const theme = useTheme();
   const styles = createTaskStyles();
+
+  const queryClient = useQueryClient();
 
   const params = useLocalSearchParams<CreateTaskParams>();
 
@@ -34,6 +37,11 @@ export default function CreateTaskPage() {
 
   const handleCreateTask = useMutation({
     mutationFn: () => createTask(title, startHour, endHour, date, user, toast),
+    onSettled: () => {
+      queryClient
+        .invalidateQueries([queryKeys.task.getAllTasks])
+        .catch(console.error);
+    },
   });
 
   return (
