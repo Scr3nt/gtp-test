@@ -1,5 +1,6 @@
 export const queryKeys = {
-  createTast: {
+  task: {
     getAllTasks: "getAllTasks",
+    getTaskById: "getTaskById",
   },
 };

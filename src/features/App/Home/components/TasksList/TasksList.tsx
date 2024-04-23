@@ -25,7 +25,7 @@ export default function TasksList({ date }: TaskListProps) {
   const [sort, setSort] = useState<TasksListSortOptions>("title");
 
   const tasksList = useQuery({
-    queryKey: [queryKeys.createTast.getAllTasks, sort, date],
+    queryKey: [queryKeys.task.getAllTasks, sort, date],
     queryFn: () => getAllTasks(date, sort),
   });
 
@@ -47,7 +47,10 @@ export default function TasksList({ date }: TaskListProps) {
             }}
             activeOpacity={0.8}
             onPress={() =>
-              router.navigate({ pathname: "/edit_task", params: { date } })
+              router.navigate({
+                pathname: "/edit_task",
+                params: { date, id: item.id },
+              })
             }
           >
             <Text type="semi-bold">{item.title}</Text>
