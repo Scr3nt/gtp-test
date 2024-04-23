@@ -5,3 +5,8 @@ export function formatDate(isoDateString: Date) {
   const day = String(isoDate.getDate()).padStart(2, "0");
   return `${year}-${month}-${day}`;
 }
+
+export function formatTimestampzToDate(timestampz: string) {
+  const date = new Date(timestampz);
+  return date.toLocaleDateString("fr-FR");
+}

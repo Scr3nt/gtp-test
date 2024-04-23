@@ -5,18 +5,23 @@ import Skeleton from "@/src/components/Skeleton/Skeleton";
 import { useTheme } from "@/src/context/theme";
 import { Theme } from "@/src/theme/theme";
 
-export default function TasksListLoading() {
+export default function EmployeeListLoading() {
   const theme = useTheme();
-  const styles = tasksListLoadingStyles(theme);
+  const styles = employeeListLoadingStyles(theme);
   return (
     <View style={{ gap: theme.spacing.s }}>
       {Array.from({ length: 15 }).map((_, index) => (
         // eslint-disable-next-line react/no-array-index-key
-        <View key={index} style={styles.content}>
+        <View style={styles.container} key={index}>
           <Separator />
-          <View style={styles.text_container}>
-            <Skeleton type="text" />
-            <Skeleton type="text" width={50} />
+          <View style={styles.content}>
+            <>
+              <Skeleton type="circle" width={40} height={40} />
+              <View style={styles.text_container}>
+                <Skeleton type="text" width={50} />
+                <Skeleton type="text" />
+              </View>
+            </>
           </View>
         </View>
       ))}
@@ -24,14 +29,19 @@ export default function TasksListLoading() {
   );
 }
 
-const tasksListLoadingStyles = (theme: Theme) => {
+const employeeListLoadingStyles = (theme: Theme) => {
   const styles = StyleSheet.create({
-    content: {
+    container: {
       gap: theme.spacing.s,
+    },
+    content: {
+      flexDirection: "row",
+      gap: theme.spacing.s,
+      alignItems: "center",
+      paddingHorizontal: theme.spacing.m,
     },
     text_container: {
       gap: theme.spacing.xs,
-      paddingHorizontal: theme.spacing.m,
     },
   });
 

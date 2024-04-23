@@ -1,7 +1,8 @@
 import { router } from "expo-router";
 
 import { ToastContextType } from "../components/Toast";
-import { supabaseAdmin } from "../lib/supabase";
+import { supabase, supabaseAdmin } from "../lib/supabase";
+import { Employee } from "../types/Employee.type";
 
 export const createEmployee = async (
   email: string,
@@ -32,6 +33,7 @@ export const createEmployee = async (
     email: email,
     password: password,
     user_metadata: { name: name, admin_id: admin_id },
+    email_confirm: true,
   });
 
   if (error) {
@@ -45,4 +47,13 @@ export const createEmployee = async (
   }
 
   router.back();
+};
+
+export const getAllEmployees = async (): Promise<Employee[]> => {
+  const { data } = await supabase.from("employee").select("*");
+
+  if (data) {
+    return data as Employee[];
+  }
+  return [];
 };

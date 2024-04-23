@@ -21,7 +21,7 @@ export default function Avatar(props: Props) {
       return (
         <View style={[styles.initials_container, props.style]}>
           <Text type="bold" style={styles.initials_text}>
-            {props.initials}
+            {props.initials.toUpperCase()}
           </Text>
         </View>
       );
