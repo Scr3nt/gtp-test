@@ -10,6 +10,7 @@ import Text from "@/src/components/Text/Text";
 import { useTheme } from "@/src/context/theme";
 import { queryKeys } from "@/src/queryKeys";
 import { Theme } from "@/src/theme/theme";
+import { TasksListSortOptions } from "@/src/types/Tasks.type";
 
 import SortOptions from "../SortOptions";
 import TasksListLoading from "./TasksListLoading";
@@ -21,13 +22,11 @@ type TaskListProps = {
 export default function TasksList({ date }: TaskListProps) {
   const theme = useTheme();
   const styles = tasksListStyles(theme);
-  const [sort, setSort] = useState<"title" | "start_hour" | "end_hour">(
-    "title",
-  );
+  const [sort, setSort] = useState<TasksListSortOptions>("title");
 
   const tasksList = useQuery({
     queryKey: [queryKeys.createTast.getAllTasks, sort, date],
-    queryFn: () => getAllTasks(date),
+    queryFn: () => getAllTasks(date, sort),
   });
 
   return (

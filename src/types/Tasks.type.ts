@@ -4,3 +4,5 @@ export type Task = {
   start_hour: string;
   end_hour: string;
 };
+
+export type TasksListSortOptions = "title" | "start_hour" | "end_hour";

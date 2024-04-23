@@ -4,12 +4,11 @@ import Button from "@/src/components/Button/Button";
 import Text from "@/src/components/Text/Text";
 import { useTheme } from "@/src/context/theme";
 import { Theme } from "@/src/theme/theme";
-
-type SortType = "title" | "start_hour" | "end_hour";
+import { TasksListSortOptions } from "@/src/types/Tasks.type";
 
 type Props = {
-  sortType: SortType;
-  onChangeSortType: (sort: SortType) => void;
+  sortType: TasksListSortOptions;
+  onChangeSortType: (sort: TasksListSortOptions) => void;
 };
 
 export default function SortOptions(props: Props) {
