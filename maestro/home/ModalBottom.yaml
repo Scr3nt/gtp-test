@@ -1,0 +1,11 @@
+appId: <com.example.gtptest>
+---
+- scrollUntilVisible:
+    element:
+      text: "Header"
+    direction: "DOWN"
+    timeout: 50000
+    speed: 20
+    visibilityPercentage: 100
+- tapOn: "Open ModalBottom"
+- tapOn: "Open ModalBottom"

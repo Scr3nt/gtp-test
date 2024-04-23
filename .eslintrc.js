@@ -1,0 +1,81 @@
+module.exports = {
+  env: {
+    es6: true,
+    jest: true,
+    node: true,
+  },
+  extends: [
+    "@react-native-community",
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking",
+    "plugin:react-hooks/recommended",
+    "plugin:react/recommended",
+  ],
+  ignorePatterns: [
+    ".eslintrc.js",
+    "EXDevMenuApp.android.js",
+    "/babel.config.js",
+    "/metro.config.js",
+  ],
+  overrides: [],
+  parser: "@typescript-eslint/parser",
+  parserOptions: {
+    ecmaVersion: "latest",
+    project: "./tsconfig.json",
+    sourceType: "module",
+  },
+  plugins: ["@typescript-eslint", "prettier", "react", "react-hooks"],
+  rules: {
+    "@typescript-eslint/naming-convention": [
+      "error",
+      {
+        selector: "variable",
+        format: ["camelCase", "UPPER_CASE", "snake_case"],
+        leadingUnderscore: "allow",
+      },
+      {
+        selector: "variable",
+        modifiers: ["const"],
+        format: ["camelCase", "PascalCase", "UPPER_CASE", "camelCase"],
+        leadingUnderscore: "allow",
+      },
+      {
+        selector: "function",
+        format: ["camelCase", "PascalCase", "snake_case"],
+      },
+      {
+        selector: "typeLike",
+        format: ["PascalCase"],
+      },
+    ],
+    "@typescript-eslint/no-empty-function": "error",
+    "@typescript-eslint/no-explicit-any": "error",
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      { argsIgnorePattern: "^_", varsIgnorePattern: "^_" },
+    ],
+    "@typescript-eslint/no-var-requires": "off",
+    "@typescript-eslint/ban-ts-comment": "off",
+    indent: ["error", 2, { SwitchCase: 1 }],
+    "linebreak-style": ["error", "unix"],
+    "no-console": ["warn", { allow: ["warn", "error"] }],
+    "prefer-const": "error",
+    quotes: ["error", "double", { avoidEscape: true }],
+    "react-hooks/exhaustive-deps": "error",
+    "react-native/no-color-literals": "warn",
+    "react-native/no-inline-styles": "warn",
+    "react-native/no-unused-styles": "error",
+    "react/no-array-index-key": "error",
+    "react/react-in-jsx-scope": "off",
+    "comma-dangle": "off",
+    indent: "off",
+    semi: ["error", "always"],
+  },
+  settings: {
+    react: {
+      version: "detect",
+    },
+  },
+};

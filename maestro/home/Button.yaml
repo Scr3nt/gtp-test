@@ -1,0 +1,5 @@
+appId: <com.example.gtptest>
+---
+- tapOn: "Button"
+- tapOn: "Button custom"
+- tapOn: "Button outline"

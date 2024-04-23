@@ -1,0 +1,13 @@
+flows:
+  - "*/*"
+
+executionOrder:
+  flowsOrder:
+    - Login
+    - Button
+    - TextInput
+    - Switch
+    - Checkbox
+    - Radio
+    - ModalBottom
+    - SignOut

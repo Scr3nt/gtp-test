@@ -1,0 +1,21 @@
+appId: <com.example.gtptest>
+---
+- scrollUntilVisible:
+    element:
+      text: "Switch"
+    direction: "DOWN"
+    timeout: 50000
+    speed: 60
+    visibilityPercentage: 100
+- tapOn:
+    id: "switch"
+    index: 0
+- tapOn:
+    id: "switch"
+    index: 0
+- tapOn:
+    id: "switch"
+    index: 1
+- tapOn:
+    id: "switch"
+    index: 1

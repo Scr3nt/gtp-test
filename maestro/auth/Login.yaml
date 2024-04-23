@@ -1,0 +1,6 @@
+appId: <com.example.gtptest>
+---
+# - launchApp
+- tapOn: "Go to register"
+- tapOn: "Go back"
+- tapOn: "Go to home"

@@ -1,0 +1,11 @@
+appId: <com.example.gtptest>
+---
+- scrollUntilVisible:
+    element:
+      text: "Sign out"
+    direction: "UP"
+    timeout: 50000
+    speed: 100
+    visibilityPercentage: 100
+- tapOn: "Sign out"
+- tapOn: "Sign out"

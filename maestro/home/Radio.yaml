@@ -1,0 +1,27 @@
+appId: <com.example.gtptest>
+---
+- scrollUntilVisible:
+    element:
+      text: "Radio"
+    direction: "DOWN"
+    timeout: 50000
+    speed: 20
+    visibilityPercentage: 100
+- tapOn:
+    id: "radio"
+    index: 0
+- tapOn:
+    id: "radio"
+    index: 0
+- tapOn:
+    id: "radio"
+    index: 1
+- tapOn:
+    id: "radio"
+    index: 1
+- tapOn:
+    id: "radio"
+    index: 2
+- tapOn:
+    id: "radio"
+    index: 2

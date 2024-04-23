@@ -1,0 +1,27 @@
+appId: <com.example.gtptest>
+---
+- scrollUntilVisible:
+    element:
+      text: "Radio"
+    direction: "DOWN"
+    timeout: 50000
+    speed: 20
+    visibilityPercentage: 100
+- tapOn:
+    id: "checkbox"
+    index: 0
+- tapOn:
+    id: "checkbox"
+    index: 0
+- tapOn:
+    id: "checkbox"
+    index: 1
+- tapOn:
+    id: "checkbox"
+    index: 1
+- tapOn:
+    id: "checkbox"
+    index: 2
+- tapOn:
+    id: "checkbox"
+    index: 2

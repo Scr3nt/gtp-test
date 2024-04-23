@@ -1,0 +1,12 @@
+{
+    "recommendations": [
+        "formulahendry.auto-rename-tag",
+        "naumovs.color-highlight",
+        "dsznajder.es7-react-js-snippets",
+        "dbaeumer.vscode-eslint",
+        "expo.vscode-expo-tools",
+        "vincaslt.highlight-matching-tag",
+        "esbenp.prettier-vscode",
+        "wix.vscode-import-cost"
+    ]
+}

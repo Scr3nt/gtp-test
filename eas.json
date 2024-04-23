@@ -1,0 +1,35 @@
+{
+  "cli": {
+    "version": ">= 3.18.1"
+  },
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal",
+      "android": {
+        "buildType": "apk",
+        "gradleCommand": ":app:assembleDebug"
+      },
+      "ios": {
+        "buildConfiguration": "Debug",
+        "image": "latest"
+      },
+      "channel": "development"
+    },
+    "preview": {
+      "distribution": "internal",
+      "android": {
+        "buildType": "apk"
+      },
+      "ios": { "image": "latest" },
+      "channel": "preview"
+    },
+    "production": {
+      "channel": "production",
+      "ios": { "image": "latest" }
+    }
+  },
+  "submit": {
+    "production": {}
+  }
+}

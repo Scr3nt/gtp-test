@@ -1,0 +1,15 @@
+appId: <com.example.gtptest>
+---
+- scrollUntilVisible:
+    element:
+      text: "TextInput"
+    direction: "DOWN"
+    timeout: 50000
+    speed: 60
+    visibilityPercentage: 100
+- tapOn: "Placeholder"
+- inputText: "Hello"
+- tapOn:
+    id: "delete-button"
+    index: 0
+- tapOn: "TextInput"
