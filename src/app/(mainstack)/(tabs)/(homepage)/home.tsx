@@ -8,6 +8,7 @@ import Button from "@/src/components/Button/Button";
 import Page from "@/src/components/Page/Page";
 import Text from "@/src/components/Text/Text";
 import { useTheme, useThemeSettings } from "@/src/context/theme";
+import TasksList from "@/src/features/App/Home/components/TasksList/TasksList";
 import { Theme } from "@/src/theme/theme";
 import { formatDate } from "@/src/utils/formatDate";
 import { Ionicons } from "@expo/vector-icons";
@@ -51,6 +52,7 @@ export default function HomePage() {
             firstDay={1}
           />
         </View>
+        <TasksList date={date} />
       </Page>
       <Button
         onPress={() => {
