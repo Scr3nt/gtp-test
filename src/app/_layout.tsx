@@ -39,10 +39,7 @@ export default function Root() {
 
   useEffect(() => {
     if (fontsLoaded || fontError) {
-      // setTimeout is used to not show the first screen for a short time. (temporary until expo-router fixes this issue)
-      setTimeout(() => {
-        SplashScreen.hideAsync().catch(console.error);
-      }, 1500);
+      SplashScreen.hideAsync().catch(console.error);
     }
   }, [fontError, fontsLoaded]);
 

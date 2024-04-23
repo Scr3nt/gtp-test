@@ -4,12 +4,12 @@ import Page from "@/src/components/Page/Page";
 import Text from "@/src/components/Text/Text";
 import { useTheme } from "@/src/context/theme";
 
-export default function LoginPage() {
+export default function EditEmployeePage() {
   const theme = useTheme();
   return (
     <Page>
       <StatusBar style={theme.colors.statusbar} />
-      <Text>LoginPage</Text>
+      <Text>EditEmployeePage</Text>
     </Page>
   );
 }

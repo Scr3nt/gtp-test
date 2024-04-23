@@ -1,5 +1,15 @@
-import SettingsScreen from "@/src/features/App/Settings/Settings";
+import { StatusBar } from "expo-status-bar";
 
-export default function Settings() {
-  return <SettingsScreen />;
+import Page from "@/src/components/Page/Page";
+import Text from "@/src/components/Text/Text";
+import { useTheme } from "@/src/context/theme";
+
+export default function SettingsPage() {
+  const theme = useTheme();
+  return (
+    <Page>
+      <StatusBar style={theme.colors.statusbar} />
+      <Text>SettingsPage</Text>
+    </Page>
+  );
 }

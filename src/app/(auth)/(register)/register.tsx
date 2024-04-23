@@ -1,5 +1,15 @@
-import RegisterScreen from "@/src/features/Auth/Register/Register";
+import { StatusBar } from "expo-status-bar";
 
-export default function Register() {
-  return <RegisterScreen />;
+import Page from "@/src/components/Page/Page";
+import Text from "@/src/components/Text/Text";
+import { useTheme } from "@/src/context/theme";
+
+export default function RegisterPage() {
+  const theme = useTheme();
+  return (
+    <Page>
+      <StatusBar style={theme.colors.statusbar} />
+      <Text>RegisterPage</Text>
+    </Page>
+  );
 }

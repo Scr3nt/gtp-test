@@ -73,9 +73,9 @@ export default function Layout() {
       }}
     >
       <Tabs.Screen
-        name="(componentshome)/index"
+        name="(homepage)/index"
         options={{
-          title: "ComponentsHome",
+          title: "Acceuil",
 
           tabBarIcon: ({ focused }) => {
             return (
@@ -89,9 +89,24 @@ export default function Layout() {
         }}
       />
       <Tabs.Screen
+        name="(employee)/employee"
+        options={{
+          title: "Employés",
+          tabBarIcon: ({ focused }) => {
+            return (
+              <Ionicons
+                name="person"
+                size={ICON_SIZE}
+                color={focused ? ACTIVE_COLOR : INACTIVE_COLOR}
+              />
+            );
+          },
+        }}
+      />
+      <Tabs.Screen
         name="(settings)/settings"
         options={{
-          title: "Settings",
+          title: "Paramètres",
           tabBarIcon: ({ focused }) => {
             return (
               <Ionicons
