@@ -20,6 +20,10 @@ export type ToastType = {
   type?: "error" | "success" | "warning" | "info";
 };
 
+export type ToastContextType = {
+  showToast: (toast: Omit<ToastType, "id">) => void;
+};
+
 export const ToastContext = createContext<{
   showToast: (toast: Omit<ToastType, "id">) => void;
 }>({
