@@ -8,6 +8,7 @@ import Button from "@/src/components/Button/Button";
 import Page from "@/src/components/Page/Page";
 import Text from "@/src/components/Text/Text";
 import TextInput from "@/src/components/TextInput/TextInput";
+import { useToast } from "@/src/components/Toast";
 import { useTheme } from "@/src/context/theme";
 import { supabase } from "@/src/lib/supabase";
 
@@ -15,11 +16,24 @@ export default function LoginPage() {
   const theme = useTheme();
   const styles = loginStyles();
 
+  const toast = useToast();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleLogin = useMutation({
     mutationFn: () => supabase.auth.signInWithPassword({ email, password }),
+    onSettled(data) {
+      if (data?.error) {
+        toast.showToast({
+          title: "Erreur",
+          subtitle: data.error.message,
+          key: "login_error",
+          icon: { name: "alert-circle-outline", size: 24, color: "red11" },
+        });
+        return;
+      }
+    },
   });
 
   return (
@@ -35,7 +49,6 @@ export default function LoginPage() {
         autoCapitalize="none"
         value={email}
         onChangeText={(text) => setEmail(text)}
-        error={handleLogin.data?.error?.message}
       />
       <TextInput
         placeholder="Mot de passe"

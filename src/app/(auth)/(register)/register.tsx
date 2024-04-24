@@ -8,12 +8,15 @@ import Button from "@/src/components/Button/Button";
 import Page from "@/src/components/Page/Page";
 import Text from "@/src/components/Text/Text";
 import TextInput from "@/src/components/TextInput/TextInput";
+import { useToast } from "@/src/components/Toast";
 import { useTheme } from "@/src/context/theme";
 import { supabase } from "@/src/lib/supabase";
 
 export default function RegisterPage() {
   const theme = useTheme();
   const styles = registerStyles();
+
+  const toast = useToast();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -30,6 +33,17 @@ export default function RegisterPage() {
           },
         },
       }),
+    onSettled(data) {
+      if (data?.error) {
+        toast.showToast({
+          title: "Erreur",
+          subtitle: data.error.message,
+          key: "register_error",
+          icon: { name: "alert-circle-outline", size: 24, color: "red11" },
+        });
+        return;
+      }
+    },
   });
 
   return (
@@ -44,7 +58,6 @@ export default function RegisterPage() {
         value={email}
         onChangeText={(text) => setEmail(text)}
         autoCapitalize="none"
-        error={handleRegister.data?.error?.message}
       />
       <TextInput
         placeholder="Mot de passe"
@@ -54,6 +67,7 @@ export default function RegisterPage() {
         value={password}
         onChangeText={(text) => setPassword(text)}
         autoCapitalize="none"
+        hint="8 caractères minimum"
       />
       <TextInput
         placeholder="Confirmation du mot de passe"
@@ -63,6 +77,7 @@ export default function RegisterPage() {
         value={passwordConfirmation}
         onChangeText={(text) => setPasswordConfirmation(text)}
         autoCapitalize="none"
+        hint="8 caractères minimum"
       />
 
       <TouchableOpacity
@@ -76,7 +91,25 @@ export default function RegisterPage() {
 
       <Button
         loading={handleRegister.isLoading}
-        onPress={() => handleRegister.mutate()}
+        onPress={() => {
+          if (password.length < 8) {
+            return toast.showToast({
+              title: "Erreur",
+              subtitle: "Le mot de passe doit contenir au moins 8 caractères",
+              key: "register_password_error",
+              icon: { name: "alert-circle-outline", size: 24, color: "red11" },
+            });
+          }
+          if (password !== passwordConfirmation) {
+            return toast.showToast({
+              title: "Erreur",
+              subtitle: "Les mots de passe ne correspondent pas",
+              key: "register_password_error",
+              icon: { name: "alert-circle-outline", size: 24, color: "red11" },
+            });
+          }
+          handleRegister.mutate();
+        }}
       >
         Créer un compte
       </Button>
