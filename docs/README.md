@@ -10,7 +10,7 @@ Pour l'architecture de mon projet toutes les routes sont dans le dossier `src/ap
 
 Pour les fonctionnalités j'ai pu mettre en place un système de création de compte qui est de type admin et depuis celui-ci on peut créer des tâches, les modifier et les supprimer mais on peut également depuis ce compte créer, modifier, supprimer les comptes employés qui seront donc reliés à cet admin.
 
-Si on se connecte depuis un compte employé on pourra seulement voir les tâches et les employés attribué à ces dernières.
+En se connectant depuis un compte employé seul les tâches et les employés attribués à ces dernières seront visibles.
 
 Concernant les tâches on peut y attribuer un nom, une heure de début et de fin qui ne peuvent pas être supérieurs à 8h d'écart et enfin un employé qui pourra n'avoir qu'une tâche par jour. Nous pouvons aussi les trier par libellé, heure de début ou de fin depuis l'espace accueil/calendrier.
 
