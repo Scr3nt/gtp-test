@@ -3,7 +3,7 @@ import { useState } from "react";
 import { FlatList, StyleSheet, TouchableOpacity } from "react-native";
 import { useQuery } from "react-query";
 
-import { getAllTasks } from "@/src/api/APIHome";
+import { getAllTasks } from "@/src/api/APITask";
 import Empty from "@/src/components/Empty/Empty";
 import Separator from "@/src/components/Separator/Separator";
 import Text from "@/src/components/Text/Text";

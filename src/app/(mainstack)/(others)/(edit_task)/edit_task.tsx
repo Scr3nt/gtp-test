@@ -4,8 +4,8 @@ import { useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 
-import { deleteTask, getTaskById, updateTask } from "@/src/api/APIEditTask";
 import { getEmployeeById } from "@/src/api/APIEmployee";
+import { deleteTask, getTaskById, updateTask } from "@/src/api/APITask";
 import Button from "@/src/components/Button/Button";
 import Header from "@/src/components/Header/Header";
 import Page from "@/src/components/Page/Page";
