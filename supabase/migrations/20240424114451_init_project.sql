@@ -59,6 +59,17 @@ alter table "public"."tasks" validate constraint "tasks_employee_id_fkey";
 
 set check_function_bodies = off;
 
+CREATE OR REPLACE FUNCTION public.get_employee_admin_id(user_id uuid)
+ RETURNS uuid
+ LANGUAGE sql
+ STABLE SECURITY DEFINER
+AS $function$
+  SELECT admin_id
+  FROM employee
+  WHERE id = $1;
+$function$
+;
+
 CREATE OR REPLACE FUNCTION public.handle_new_user()
  RETURNS trigger
  LANGUAGE plpgsql
@@ -231,7 +242,7 @@ on "public"."employee"
 as permissive
 for select
 to public
-using ((admin_id = admin_id));
+using ((admin_id IN ( SELECT get_employee_admin_id(auth.uid()) AS get_employee_admin_id)));
 
 
 create policy "Let admin to do all actions"
