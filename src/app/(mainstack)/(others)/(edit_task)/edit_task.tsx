@@ -1,10 +1,11 @@
-import { useLocalSearchParams } from "expo-router";
+import { router, useLocalSearchParams } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 
 import { deleteTask, getTaskById, updateTask } from "@/src/api/APIEditTask";
+import { getEmployeeById } from "@/src/api/APIEmployee";
 import Button from "@/src/components/Button/Button";
 import Header from "@/src/components/Header/Header";
 import Page from "@/src/components/Page/Page";
@@ -12,6 +13,7 @@ import Text from "@/src/components/Text/Text";
 import TextInput from "@/src/components/TextInput/TextInput";
 import { useToast } from "@/src/components/Toast";
 import { useTheme } from "@/src/context/theme";
+import SelectEmployee from "@/src/features/App/Employee/components/SelectEmployee";
 import { queryKeys } from "@/src/queryKeys";
 import { Theme } from "@/src/theme/theme";
 import { formatHour } from "@/src/utils/formatHour";
@@ -19,6 +21,7 @@ import { formatHour } from "@/src/utils/formatHour";
 type EditTaskParams = {
   date: string;
   id: string;
+  employee_id: string;
 };
 
 export default function EditTaskPage() {
@@ -38,17 +41,41 @@ export default function EditTaskPage() {
         setTitle(data.title);
         setStartHour(data.start_hour);
         setEndHour(data.end_hour);
+        employee.remove();
+      }
+    },
+  });
+
+  const employee = useQuery({
+    queryKey: [
+      queryKeys.employee.getEmployeeById,
+      params.employee_id,
+      task.data?.employee_id || "",
+    ],
+    queryFn: () =>
+      getEmployeeById(params.employee_id || task.data?.employee_id || ""),
+    onSettled(data) {
+      if (data) {
+        setEmployeeName(data.name);
       }
     },
   });
 
   const handleUpdateTask = useMutation({
     mutationFn: () =>
-      updateTask(task.data?.id || "", title, startHour, endHour, toast),
+      updateTask(
+        task.data?.id || "",
+        title,
+        startHour,
+        endHour,
+        employeeName ? employee.data?.id || null : null,
+        toast,
+      ),
     onSettled: () => {
       queryClient
         .invalidateQueries([queryKeys.task.getAllTasks])
         .catch(console.error);
+      router.setParams({ employee_id: "" });
     },
   });
 
@@ -58,12 +85,18 @@ export default function EditTaskPage() {
       queryClient
         .invalidateQueries([queryKeys.task.getAllTasks])
         .catch(console.error);
+      router.setParams({ employee_id: "" });
     },
   });
+
+  const onPressRemoveEmployee = () => {
+    setEmployeeName("");
+  };
 
   const [title, setTitle] = useState("");
   const [startHour, setStartHour] = useState("");
   const [endHour, setEndHour] = useState("");
+  const [employeeName, setEmployeeName] = useState("");
   const date = params.date;
 
   return (
@@ -100,6 +133,10 @@ export default function EditTaskPage() {
           placeholder="Date"
           value={date}
           editable={false}
+        />
+        <SelectEmployee
+          onPressRemoveEmployee={onPressRemoveEmployee}
+          employeeName={employeeName}
         />
         <Button
           loading={handleUpdateTask.isLoading}

@@ -65,7 +65,7 @@ export default function Header(props: Props) {
   return (
     <View style={[styles.container, props.style]}>
       <View style={[itemStyle(), styles.start]}>{renderLeft()}</View>
-      <View style={[{ flex: 2 }, styles.center]}>{renderMiddle()}</View>
+      <View style={[{ flex: 3 }, styles.center]}>{renderMiddle()}</View>
       <View style={[itemStyle(), styles.end]}>{renderRight()}</View>
     </View>
   );

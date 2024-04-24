@@ -7,7 +7,7 @@ export const getAllTasks = async (
 ): Promise<Task[]> => {
   const { data } = await supabase
     .from("tasks")
-    .select("*")
+    .select("*, employee:employee_id (*)")
     .eq("date", date)
     .order(sort, { ascending: true })
     .order("start_hour", { ascending: true })

@@ -19,6 +19,7 @@ export const updateTask = async (
   title: string,
   startHour: string,
   endHour: string,
+  employee_id: string | null,
   toast: ToastContextType,
 ) => {
   if (!id) {
@@ -55,6 +56,7 @@ export const updateTask = async (
       title,
       start_hour: startHour,
       end_hour: endHour,
+      employee_id,
     })
     .eq("id", id);
 

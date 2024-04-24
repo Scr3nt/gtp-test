@@ -14,7 +14,11 @@ import { formatTimestampzToDate } from "@/src/utils/formatDate";
 
 import EmployeeListLoading from "./EmployeeListLoading";
 
-export default function EmployeeList() {
+type EmployeeListProps = {
+  onPress?: (id: string) => void;
+};
+
+export default function EmployeeList(props: EmployeeListProps) {
   const theme = useTheme();
   const styles = employeeListStyles(theme);
 
@@ -22,6 +26,17 @@ export default function EmployeeList() {
     queryKey: [queryKeys.employee.getAllEmployees],
     queryFn: () => getAllEmployees(),
   });
+
+  const onPress = (id: string) => {
+    if (props.onPress) {
+      return props.onPress(id);
+    }
+
+    return router.navigate({
+      pathname: "/edit_employee",
+      params: { id: id },
+    });
+  };
 
   return (
     <FlatList
@@ -34,12 +49,7 @@ export default function EmployeeList() {
             paddingHorizontal: theme.spacing.m,
           }}
           activeOpacity={0.8}
-          onPress={() =>
-            router.navigate({
-              pathname: "/edit_employee",
-              params: { id: item.id },
-            })
-          }
+          onPress={() => onPress(item.id)}
         >
           <View style={styles.employee_container}>
             <Avatar size={40} initials={item.name.slice(0, 1)} />

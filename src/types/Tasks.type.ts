@@ -1,3 +1,5 @@
+import { Employee } from "./Employee.type";
+
 export type Task = {
   id: string;
   title: string;
@@ -7,6 +9,7 @@ export type Task = {
   admin_id: string;
   employee_id: string;
   created_at: string;
+  employee?: Employee;
 };
 
 export type TasksListSortOptions = "title" | "start_hour" | "end_hour";

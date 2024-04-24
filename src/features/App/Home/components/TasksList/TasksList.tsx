@@ -44,6 +44,7 @@ export default function TasksList({ date }: TaskListProps) {
             style={{
               paddingVertical: theme.spacing.s,
               paddingHorizontal: theme.spacing.m,
+              gap: theme.spacing.xs,
             }}
             activeOpacity={0.8}
             onPress={() =>
@@ -57,6 +58,11 @@ export default function TasksList({ date }: TaskListProps) {
             <Text preset="caption">
               {item.start_hour} - {item.end_hour}
             </Text>
+            {item.employee && (
+              <Text preset="caption">
+                Employé assigné : {item.employee.name}
+              </Text>
+            )}
           </TouchableOpacity>
         )}
         keyExtractor={(item) => item.id.toString()}
