@@ -145,6 +145,20 @@ export const getAllEmployees = async (): Promise<Employee[]> => {
   return [];
 };
 
+export const getAllEmployeesWithTasks = async (
+  date: string,
+): Promise<Employee[]> => {
+  const { data } = await supabase
+    .from("employee")
+    .select("*, tasks!inner(id, date)")
+    .eq("tasks.date", date);
+
+  if (data) {
+    return data as Employee[];
+  }
+  return [];
+};
+
 export const getEmployeeById = async (id: string): Promise<Employee | null> => {
   if (!id) {
     return null;

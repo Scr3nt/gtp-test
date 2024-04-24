@@ -13,7 +13,7 @@ import Text from "@/src/components/Text/Text";
 import TextInput from "@/src/components/TextInput/TextInput";
 import { useToast } from "@/src/components/Toast";
 import { useTheme } from "@/src/context/theme";
-import SelectEmployee from "@/src/features/App/Employee/components/SelectEmployee";
+import AssignEmployeeToTask from "@/src/features/App/Employee/components/AssignEmployeeToTask";
 import { queryKeys } from "@/src/queryKeys";
 import { Theme } from "@/src/theme/theme";
 import { formatHour } from "@/src/utils/formatHour";
@@ -134,9 +134,10 @@ export default function EditTaskPage() {
           value={date}
           editable={false}
         />
-        <SelectEmployee
+        <AssignEmployeeToTask
           onPressRemoveEmployee={onPressRemoveEmployee}
           employeeName={employeeName}
+          date={date}
         />
         <Button
           loading={handleUpdateTask.isLoading}

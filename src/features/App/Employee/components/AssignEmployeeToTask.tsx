@@ -12,17 +12,19 @@ import { Ionicons } from "@expo/vector-icons";
 
 const DELETE_BUTTON_SIZE = 17;
 
-type SelectEmployeeProps = {
+type AssignEmployeeToTaskProps = {
   onPressRemoveEmployee: () => void;
   employeeName: string;
+  date: string;
 };
 
-export default function SelectEmployee({
+export default function AssignEmployeeToTask({
   employeeName,
   onPressRemoveEmployee,
-}: SelectEmployeeProps) {
+  date,
+}: AssignEmployeeToTaskProps) {
   const theme = useTheme();
-  const styles = selectEmployeeStyles(theme);
+  const styles = assignEmployeeToTaskStyles(theme);
   return (
     <View style={{ gap: theme.spacing.s }}>
       <View style={{ gap: theme.spacing.xs }}>
@@ -58,6 +60,7 @@ export default function SelectEmployee({
         onPress={() =>
           router.navigate({
             pathname: "/select_employee",
+            params: { date },
           })
         }
         style={styles.employee_button}
@@ -74,7 +77,7 @@ export default function SelectEmployee({
   );
 }
 
-const selectEmployeeStyles = (theme: Theme) => {
+const assignEmployeeToTaskStyles = (theme: Theme) => {
   const styles = StyleSheet.create({
     card: {
       paddingVertical: theme.spacing.s,

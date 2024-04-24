@@ -5,6 +5,7 @@ export const queryKeys = {
   },
   employee: {
     getAllEmployees: "getAllEmployees",
+    getAllEmployeesWithTasks: "getAllEmployeesWithTasks",
     getEmployeeById: "getEmployeeById",
   },
 };
