@@ -6,12 +6,16 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { PHONE_WIDTH_BREAKPOINT, TABLET_WIDTH_BREAKPOINT } from "@/src/const";
 import { useTheme } from "@/src/context/theme";
+import { useUser } from "@/src/hooks/useUser";
 import { Ionicons } from "@expo/vector-icons";
 
 export default function Layout() {
   const theme = useTheme();
   const insets = useSafeAreaInsets();
   const { width } = useWindowDimensions();
+
+  const user = useUser();
+
   const ACTIVE_COLOR = theme.colors.blue11;
   const INACTIVE_COLOR = theme.colors.gray11;
 
@@ -88,21 +92,42 @@ export default function Layout() {
           },
         }}
       />
-      <Tabs.Screen
-        name="(employee)/employee"
-        options={{
-          title: "Employés",
-          tabBarIcon: ({ focused }) => {
-            return (
-              <Ionicons
-                name="person"
-                size={ICON_SIZE}
-                color={focused ? ACTIVE_COLOR : INACTIVE_COLOR}
-              />
-            );
-          },
-        }}
-      />
+      {user?.user_metadata.is_admin ? (
+        <Tabs.Screen
+          name="(employee)/employee"
+          options={{
+            title: "Employés",
+            tabBarIcon: ({ focused }) => {
+              return (
+                <Ionicons
+                  name="person"
+                  size={ICON_SIZE}
+                  color={focused ? ACTIVE_COLOR : INACTIVE_COLOR}
+                />
+              );
+            },
+          }}
+        />
+      ) : (
+        <Tabs.Screen
+          name="(employee)/employee"
+          options={{
+            title: "Employés",
+            tabBarItemStyle: {
+              display: "none",
+            },
+            tabBarIcon: ({ focused }) => {
+              return (
+                <Ionicons
+                  name="person"
+                  size={ICON_SIZE}
+                  color={focused ? ACTIVE_COLOR : INACTIVE_COLOR}
+                />
+              );
+            },
+          }}
+        />
+      )}
       <Tabs.Screen
         name="(settings)/settings"
         options={{

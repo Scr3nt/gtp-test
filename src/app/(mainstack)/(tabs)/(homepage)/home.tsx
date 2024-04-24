@@ -9,6 +9,7 @@ import Page from "@/src/components/Page/Page";
 import Text from "@/src/components/Text/Text";
 import { useTheme, useThemeSettings } from "@/src/context/theme";
 import TasksList from "@/src/features/App/Home/components/TasksList/TasksList";
+import { useUser } from "@/src/hooks/useUser";
 import { Theme } from "@/src/theme/theme";
 import { formatDate } from "@/src/utils/formatDate";
 import { Ionicons } from "@expo/vector-icons";
@@ -18,6 +19,8 @@ export default function HomePage() {
   const themeContext = useThemeSettings();
   const styles = homeStyles(theme);
   const [date, setDate] = useState(formatDate(new Date()));
+
+  const user = useUser();
 
   const onDayPress = (dayPressed: DateData) => {
     setDate(dayPressed.dateString);
@@ -57,19 +60,21 @@ export default function HomePage() {
         </View>
         <TasksList date={date} />
       </Page>
-      <Button
-        onPress={() => {
-          router.navigate({ pathname: "/create_task", params: { date } });
-        }}
-        style={styles.create_task}
-      >
-        <>
-          <Text style={styles.create_task_text} type="bold">
-            Créer une tâche
-          </Text>
-          <Ionicons name="add" size={24} color={theme.colors.blue11} />
-        </>
-      </Button>
+      {user && user.user_metadata.is_admin && (
+        <Button
+          onPress={() => {
+            router.navigate({ pathname: "/create_task", params: { date } });
+          }}
+          style={styles.create_task}
+        >
+          <>
+            <Text style={styles.create_task_text} type="bold">
+              Créer une tâche
+            </Text>
+            <Ionicons name="add" size={24} color={theme.colors.blue11} />
+          </>
+        </Button>
+      )}
     </Page>
   );
 }

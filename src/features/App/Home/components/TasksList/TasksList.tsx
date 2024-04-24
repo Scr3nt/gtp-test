@@ -8,6 +8,7 @@ import Empty from "@/src/components/Empty/Empty";
 import Separator from "@/src/components/Separator/Separator";
 import Text from "@/src/components/Text/Text";
 import { useTheme } from "@/src/context/theme";
+import { useUser } from "@/src/hooks/useUser";
 import { queryKeys } from "@/src/queryKeys";
 import { Theme } from "@/src/theme/theme";
 import { TasksListSortOptions } from "@/src/types/Tasks.type";
@@ -23,6 +24,8 @@ export default function TasksList({ date }: TaskListProps) {
   const theme = useTheme();
   const styles = tasksListStyles(theme);
   const [sort, setSort] = useState<TasksListSortOptions>("title");
+
+  const user = useUser();
 
   const tasksList = useQuery({
     queryKey: [queryKeys.task.getAllTasks, sort, date],
@@ -47,6 +50,7 @@ export default function TasksList({ date }: TaskListProps) {
               gap: theme.spacing.xs,
             }}
             activeOpacity={0.8}
+            disabled={!user?.user_metadata.is_admin}
             onPress={() =>
               router.navigate({
                 pathname: "/edit_task",
