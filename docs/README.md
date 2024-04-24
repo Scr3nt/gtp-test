@@ -1,128 +1,25 @@
 # README
 
-## Blitz - React Native Boilerplate
+Durée du test : 1jour et demi environ
 
-Create your React Native app at lightning speed for iOS, Android and Web!
+Pour ce test j'ai utilisé mon boilerplate [Blitz](https://www.blitz-rn.com) afin d'avoir déjà ma configuration ESlint, librairies etc. et mes composants de crée. (Je vous invite à aller sur le site pour voir le plein potentiel de ce boilerplate)
 
-Blitz is a powerful React Native boilerplate designed to simplify and accelerate app development. With Blitz, you'll experience:
+Pour la partie backend/database j'ai utilisé Supabase. Vous pouvez voir toute la construction dans le dossier `supabase/migrations`.
 
-- **Simplicity**: Blitz provides an intuitive and user-friendly structure, making it easy to get started and build your app efficiently.
+Pour l'architecture de mon projet toutes les routes sont dans le dossier `src/app`, l'api dans `src/api`, les components dans `src/components` et les fichiers spécifiques à chaque écrans sont dans le dossier `src/features`. (vous pourrez voir les `hooks`, les utilitaires dans `utils` etc.)
 
-- **Speed**: The optimized setup and pre-configured environment ensure fast development cycles, reducing time-to-market significantly.
+Pour les fonctionnalités j'ai pu mettre en place un système de création de compte qui est de type admin et depuis celui-ci on peut créer des tâches, les modifier et les supprimer mais on peut aussi depuis ce compte créer, modifier, supprimer les comptes employés qui seront donc reliés à cet admin.
 
-- **Maintainability**: The clean and organized codebase, coupled with adherence to best coding practices, guarantees long-term maintainability and scalability.
+Si on se connecte depuis un compte employé on pourra seulement voir les tâches et les employés attribué à ces dernières.
 
-- **Up-to-date**: Regular updates and improvements keep Blitz aligned with the latest technologies and ensure continuous support for new features.
+Concernant les tâches on peut y attribuer un nom, une heure de début et de fin qui ne peuvent pas être supérieure à 8h d'écart et enfin un employé qui pourra n'avoir qu'une tâche par jour.
 
-- **Performance**: By incorporating optimized libraries and performance-focused components, Blitz delivers high-performing apps to provide an excellent user experience.
+Pour la création d'employé on peut y renseigner un nom et c'est tout.
 
-- **Time Savings**: With ready-to-use features and templates, Blitz saves you 1 to 2 months of development time, giving you a significant head start on your projects.
+J'ai pu gérer les cas de chargement avec des skeletons et des erreurs pour apporter une bonne expérience utilisateur en indiquant à l'utilisateur si il faisait quelque chose de façon incorrecte à l'aide de toast.
 
-- **Invaluable Long-term Benefits**: The benefits of using Blitz extend beyond time saved, as its maintainability, performance, and regular updates provide a solid foundation for your app's growth and success.
+Je vous laisse voir en vidéo ci-dessous le flow d'utilisation coté admin et coté employé ainsi que la gestion des erreurs.
 
-### Quick Start
 
-Prerequisites:
+https://github.com/Scr3nt/gtp-test/assets/56580186/3755bd30-1d1b-43e7-8762-6a3974d50967
 
-- Make sure you have `yarn` installed.
-
-Run:
-
-```bash
-bash blitz-script.sh
-```
-
-### Features
-
-Blitz offers a comprehensive set of features to supercharge your app development : 
-
-- **Full Compatibility**: Develop once, deploy across iOS, Android, and Web platforms, maximizing your app's reach.
-
-- **Complete Documentation**: Benefit from detailed documentation that guides you through app creation, deployment, updates, icon modifications, and more.
-
-- **Components**: Customize every aspect of your app with a wide array of fully customizable components.
-
-- **Authentication Template**: Enjoy a pre-built authentication template for effortless integration into your app.
-
-- **Typed i18n Support**: Seamlessly implement typed internationalization (i18n) to cater to a global audience.
-
-- **Flexible Theme System**: Empower your app with a versatile theme system, allowing you to tailor its appearance to perfection.
-
-- **Unit Testing for Components**: Each component comes with dedicated unit tests, enabling you to verify their individual functionalities with confidence.
-
-- **E2E Testing with Maestro**: Ensure your app's end-to-end functionality is rock-solid with Maestro, facilitating thorough testing across various scenarios.
-
-- **Path Aliases**: Utilize path aliases for cleaner and more organized import statements.
-
-- **ESLint Integration**: Ensure your app's code follows best practices, avoids errors, and maintains high-quality standards with ESLint.
-
-- **Husky Integration**: Automatically verify that ESLint rules are respected with each commit, maintaining code consistency and quality.
-
-- **Continuous Integration for Pull Requests**: Check code quality on PR
-
-And much more to explore!
-
-### Libraries and Versions
-
-| Library                        | Version |
-| ------------------------------ | ------- |
-| apisauce                       | ^3.0.1  |
-| eslint                         | ^8.46.0 |
-| expo                           | ~49.0.5 |
-| expo-constants                 | ~14.4.2 |
-| expo-dev-client                | ~2.4.6  |
-| expo-font                      | ~11.4.0 |
-| expo-image                     | ~1.3.2  |
-| expo-linking                   | ~5.0.2  |
-| expo-localization              | ~14.3.0 |
-| expo-router                    | 2.0.0   |
-| expo-splash-screen             | ~0.20.4 |
-| expo-status-bar                | ~1.6.0  |
-| expo-system-ui                 | ~2.4.0  |
-| expo-updates                   |         |
-| @gorhom/bottom-sheet           | ^4      |
-| husky                          | ^8.0.3  |
-| i18n-js                        | ^4.3.0  |
-| jest                           | ^29.2.1 |
-| jest-expo                      | ^49.0.0 |
-| prettier                       | ^3.0.0  |
-| react-dom                      | 18.2.0  |
-| react                          | 18.2.0  |
-| react-native                   | 0.72.3  |
-| react-native-avoid-softinput   | ^4.0.1  |
-| react-native-gesture-handler   | ~2.12.0 |
-| react-native-mmkv              | ^2.10.1 |
-| react-native-reanimated        | ~3.3.0  |
-| react-native-safe-area-context | 4.6.3   |
-| react-native-screens           | ~3.22.0 |
-| react-native-web               | ~0.19.6 |
-| react-query                    | ^3.39.3 |
-| @shopify/flash-list            | 1.4.3   |
-| @testing-library/react-native  | ^12.1.3 |
-| typescript                     | ^5.1.3  |
-
-### Recommended Libraries
-
-| Library           | Description                           |
-| ----------------- | ------------------------------------- |
-| Sentry            | Bug tracking and error monitoring     |
-| Jotai             | State management                      |
-| Adapty            | In-app purchases and monetization     |
-| Supabase/Firebase | Backend services and database support |
-| Rive              | Animation and motion design           |
-| Segment           | User tracking and analytics           |
-| Vision Camera     | Camera                                |
-| React Native Skia | Graphics rendering and performance    |
-| Luxon             | Date and time manipulation            |
-
-### **Upcoming Features**
-
-We are committed to continuously enhancing Blitz to meet your evolving needs. Here are some exciting upcoming features:
-
-- Figma design system
-
-- npm and pnpm support
-
-- Playwright integration
-
-- Native components (calendars, pickers, etc.)
